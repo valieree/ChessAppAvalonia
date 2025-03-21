@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ChessApp.ViewModels"
+        Title="Шахматные фигуры"
+        Width="400"
+        Height="300"
+        x:Class="ChessApp.Views.MainWindow"
+        x:DataType="vm:ChessViewModel">
+
+	<Window.DataContext>
+		<vm:ChessViewModel/>
+	</Window.DataContext>
+
+	<StackPanel Margin="10">
+		<TextBlock Text="Выберите фигуру:"/>
+		<ComboBox ItemsSource="{Binding PieceTypes}" SelectedItem="{Binding SelectedPieceType}"/>
+
+		<TextBlock Text="Выберите цвет:" Margin="0,10,0,0"/>
+		<ComboBox ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}"/>
+
+		<TextBlock Text="Начальная позиция (например, A1):" Margin="0,10,0,0"/>
+		<TextBox Text="{Binding Position}"/>
+
+		<Button Content="Создать фигуру" Command="{Binding CreatePiece}" Margin="0,10,0,0"/>
+
+		<TextBlock Text="Куда ходить (например, A2):" Margin="0,10,0,0"/>
+		<TextBox Text="{Binding MoveTo}"/>
+		<Button Content="Сделать ход" Command="{Binding MakeMove}"/>
+
+		<TextBlock Text="Статус:" Margin="10,5,0,0"/>
+		<TextBlock Text="{Binding Status}" FontWeight="Bold"/>
+	</StackPanel>
+</Window>
